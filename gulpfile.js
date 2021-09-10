@@ -1,24 +1,25 @@
 // Metoder
 const { src, dest, parallel, series, watch } = require("gulp");
-// slå ihop filer --save-dev gulp-concat
+// slå ihop filer npm install gulp-concat --save-dev
 const concat = require("gulp-concat");
 // minimera js npm install gulp-terser --save-dev
 const terser = require("gulp-terser");
 // minimera css npm install gulp-cssnano --save-dev
 const cssnano = require("gulp-cssnano");
-// minimera bilder --save-dev gulp-imagemin
+// minimera bilder npm install gulp-imagemin --save-dev
 const imagemin = require("gulp-imagemin");
-// browsersync npm install browser-sync gulp --save-dev
+// browsersync npm install browser-sync --save-dev
 const browserSync = require("browser-sync").create();
-// sourceMaps npm i gulp-sourcemaps
+// sourceMaps npm i gulp-sourcemaps --save-dev
 const sourcemaps = require("gulp-sourcemaps");
 //npm install node-sass gulp-sass --save-dev
 const sass = require("gulp-sass");
 sass.compiler = require("node-sass");
-
 // objekt för att lagra sökvägar
+
 const files = {
   htmlPath: "src/**/*.html",
+  sassPath: "src/**/*.scss",
   cssPath: "src/**/*.css",
   jsPath: "src/**/*.js",
   picPath: "src/pics/*",
@@ -33,6 +34,16 @@ function htmlTask() {
       .pipe(dest("pub"))
   );
 }
+
+// sassTask
+function sassTask() {
+  return src(files.sassPath)
+    .pipe(sourcemaps.init())
+    .pipe(sass().on("error", sass.logError))
+    .pipe(dest("pub/css"))
+    .pipe(browserSync.stream());
+}
+
 // cssTask inlkuderas ifall man behöver använda.
 function cssTask() {
   return (
@@ -49,14 +60,7 @@ function cssTask() {
       .pipe(dest("pub/css"))
   );
 }
-// sassTask
-function sassTask() {
-  return src(files.sassPath)
-    .pipe(sourcemaps.init())
-    .pipe(sass().on("error", sass.logError))
-    .pipe(dest("pub/css"))
-    .pipe(browserSync.stream());
-}
+
 // jsTask
 function jsTask() {
   return (
@@ -95,14 +99,20 @@ function watchTask() {
   // metoden watch som tar en array och ett argument.
   // Ladda om webbläsaren vid förändring, browsersync
   watch(
-    [files.htmlPath, files.cssPath, files.jsPath, files.picPath],
-    parallel(htmlTask, cssTask, sassTask, jsTask, picTask)
+    [
+      files.htmlPath,
+      files.sassPath,
+      files.cssPath,
+      files.jsPath,
+      files.picPath,
+    ],
+    parallel(htmlTask, sassTask, cssTask, jsTask, picTask)
   ).on("change", browserSync.reload);
 }
 
 // Dags att exportera, först körs alla task parallelt,
 //  sedan watchTask med browserSync.
 exports.default = series(
-  parallel(htmlTask, cssTask, sassTask, jsTask, picTask),
+  parallel(htmlTask, sassTask, cssTask, jsTask, picTask),
   watchTask
 );
