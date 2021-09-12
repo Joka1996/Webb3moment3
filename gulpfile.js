@@ -12,11 +12,10 @@ const imagemin = require("gulp-imagemin");
 const browserSync = require("browser-sync").create();
 // sourceMaps npm i gulp-sourcemaps --save-dev
 const sourcemaps = require("gulp-sourcemaps");
-//npm install node-sass gulp-sass --save-dev
-const sass = require("gulp-sass");
-sass.compiler = require("node-sass");
-// objekt för att lagra sökvägar
+//npm install sass gulp-sass --save-dev
+const sass = require("gulp-sass")(require("sass"));
 
+// objekt för att lagra sökvägar
 const files = {
   htmlPath: "src/**/*.html",
   sassPath: "src/**/*.scss",
@@ -37,11 +36,15 @@ function htmlTask() {
 
 // sassTask
 function sassTask() {
-  return src(files.sassPath)
-    .pipe(sourcemaps.init())
-    .pipe(sass().on("error", sass.logError))
-    .pipe(dest("pub/css"))
-    .pipe(browserSync.stream());
+  return (
+    src(files.sassPath)
+      .pipe(sourcemaps.init())
+      .pipe(sass().on("error", sass.logError))
+      // sourcemaps
+      .pipe(sourcemaps.write("./maps"))
+      .pipe(dest("pub/css"))
+      .pipe(browserSync.stream())
+  );
 }
 
 // cssTask inlkuderas ifall man behöver använda.
@@ -55,7 +58,7 @@ function cssTask() {
       // minimera filer
       .pipe(cssnano())
       // sourcemaps
-      .pipe(sourcemaps.write())
+      .pipe(sourcemaps.write("./maps"))
       // skicka till pub
       .pipe(dest("pub/css"))
   );
@@ -72,7 +75,7 @@ function jsTask() {
       // minimera filer
       .pipe(terser())
       // sourcemaps
-      .pipe(sourcemaps.write())
+      .pipe(sourcemaps.write("./maps"))
       // skicka till pub
       .pipe(dest("pub/js"))
   );
