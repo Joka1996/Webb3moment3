@@ -10,7 +10,6 @@
   </head>
   <body>
     <header>
-      <h1>Moment 3 - SASS</h1>
       <nav class="nav">
         <ul>
           <li><a href="#">länk 1</a></li>
@@ -20,23 +19,41 @@
           <li><a href="#">länk 2</a></li>
         </ul>
       </nav>
+      <h1>Moment 3 - SASS</h1>
     </header>
-    <div class="slideshowContainer">
-      <div class="slide fade">
-        <img src="pics/ocean.jpg" alt="the ocean" />
+    <div class="container">
+      <div class="slideshowContainer">
+        <div class="slide fade">
+          <img src="pics/ocean.jpg" alt="the ocean" />
+          <p>This is some text</p>
+        </div>
+        <div class="slide fade">
+          <img src="pics/tree.jpg" alt="this is some trees" />
+          <p>This is some other text</p>
+        </div>
       </div>
-      <div class="slide fade">
-        <img src="pics/tree.jpg" alt="this is some trees" />
+      <div id="box1">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
+          commodo odio aenean sed adipiscing diam donec. Et malesuada fames ac
+          turpis. Turpis massa tincidunt dui ut ornare lectus sit amet est.
+          Dignissim enim sit amet venenatis. Tellus id interdum velit laoreet
+          id. Quam quisque id diam vel quam elementum pulvinar etiam. Pretium
+          fusce id velit ut tortor pretium viverra. Id porta nibh venenatis cras
+          sed felis eget velit aliquet. Sed pulvinar proin gravida hendrerit.
+          Urna condimentum mattis pellentesque id nibh tortor. Porta non
+          pulvinar neque laoreet suspendisse interdum consectetur libero. In
+          fermentum posuere urna nec tincidunt praesent semper. Dignissim cras
+          tincidunt lobortis feugiat vivamus at augue.
+        </p>
       </div>
+      <div id="box2"></div>
     </div>
-    <div class="buttonBox">
-      <h2>Byt bakgrundsfärg</h2>
-      <button id="button" onclick="button()">KLICKA HÄR</button>
-    </div>
+    <footer></footer>
     <script src="js/slideshow.js"></script>
     <script src="js/button.js"></script>
     <script src="js/main.js"></script>
-    <footer></footer>
     <source src="js/main.js" />
   </body>
 </html>

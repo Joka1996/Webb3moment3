@@ -1,11 +1,8 @@
 @import "basic";
 
 .slideshowContainer {
-  max-width: 100%;
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
+  background-color: $mainColor;
+  @include boxes;
 }
 
 .slide {
@@ -13,8 +10,16 @@
 }
 
 .slide img {
+  height: 300px;
+  width: 500px;
   max-width: 100%;
-  border: 20px solid $mainColor;
+  display: block;
+  margin: 0 auto;
+}
+
+.slideshowContainer p {
+  color: $textColor;
+  text-align: center;
 }
 
 .fade {

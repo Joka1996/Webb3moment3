@@ -3,3 +3,20 @@
 $mainColor: rgb(151, 20, 20);
 $textColor: white;
 $bgColor: #36486a;
+$hoverColor: darken($textColor, 60%);
+
+@mixin boxes($circle: false) {
+  height: 400px;
+  width: 600px;
+
+  @if $circle {
+    border-radius: 50%;
+  } @else {
+    border-radius: 10px;
+  }
+}
+
+@mixin hover {
+  color: rgb(228, 226, 226);
+  background-color: $hoverColor;
+}
