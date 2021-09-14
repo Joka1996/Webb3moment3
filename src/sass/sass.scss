@@ -1,5 +1,57 @@
-$blue: rgb(216, 80, 46);
-$lightblue: lighten($blue, 30%);
-header {
-  background-color: $lightblue;
+// $blue: rgb(216, 80, 46);
+// $lightblue: lighten($blue, 30%);
+// header {
+//   background-color: $lightblue;
+// }
+// @mixin boxes($circle: false) {
+//   height: 100px;
+//   width: 100px;
+
+//   @if $circle {
+//     border-radius: 50%;
+//   } @else {
+//     border-radius: 10px;
+//   }
+// }
+
+// #box1 {
+//   @include boxes;
+//   background-color: $blue;
+// }
+
+// #box2 {
+//   @include boxes($circle: true);
+//   background-color: $blue;
+// }
+
+// #box3 {
+//   @extend #box1;
+// }
+
+@import "slideshow";
+@import "basic";
+body {
+  background-color: $bgColor;
+}
+
+h1 {
+  text-align: center;
+  color: $textColor;
+}
+
+.nav {
+  margin-top: 5%;
+  background-color: $mainColor;
+}
+
+.nav ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: space-between;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+.nav a {
+  color: $textColor;
 }

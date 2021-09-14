@@ -6,21 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/sass/sass.css" />
-    <title>Document</title>
+    <title>Moment3</title>
   </head>
   <body>
     <header>
       <h1>Moment 3 - SASS</h1>
-      <nav>
+      <nav class="nav">
         <ul>
           <li><a href="#">länk 1</a></li>
           <li><a href="#">länk 2</a></li>
           <li><a href="#">länk 3</a></li>
+          <li><a href="#">länk 1</a></li>
+          <li><a href="#">länk 2</a></li>
         </ul>
       </nav>
     </header>
-
-    <div class="container"></div>
+    <div class="slideshowContainer">
+      <div class="slide fade">
+        <img src="pics/ocean.jpg" alt="the ocean" />
+      </div>
+      <div class="slide fade">
+        <img src="pics/tree.jpg" alt="this is some trees" />
+      </div>
+    </div>
+    <div class="buttonBox">
+      <h2>Byt bakgrundsfärg</h2>
+      <button id="button" onclick="button()">KLICKA HÄR</button>
+    </div>
+    <script src="js/slideshow.js"></script>
+    <script src="js/button.js"></script>
+    <script src="js/main.js"></script>
     <footer></footer>
     <source src="js/main.js" />
   </body>
