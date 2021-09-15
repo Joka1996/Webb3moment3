@@ -1,10 +1,12 @@
 // Variabler
 // färger
-$mainColor: rgb(151, 20, 20);
-$textColor: white;
-$bgColor: #36486a;
+$mainColor: rgba(151, 20, 20, 0.849);
+$textColor: rgb(255, 255, 255);
+$bgColor: #115266;
 $hoverColor: darken($textColor, 60%);
+$footerColor: lighten($mainColor, 8%);
 
+// mixins
 @mixin boxes($circle: false) {
   height: 400px;
   width: 600px;

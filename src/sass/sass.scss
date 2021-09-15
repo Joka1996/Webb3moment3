@@ -28,10 +28,14 @@
 //   @extend #box1;
 // }
 
+// importera de andra filerna.
 @import "slideshow";
 @import "basic";
 body {
   background-color: $bgColor;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 h1 {
@@ -39,31 +43,31 @@ h1 {
   color: $textColor;
 }
 
-.nav {
+nav {
   background-color: $mainColor;
-}
 
-.nav ul {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  font-size: larger;
-}
-.nav a {
-  color: $textColor;
-  text-decoration: none;
-  padding: 14px 16px;
-  font-size: larger;
-}
+  ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: larger;
+  }
+  a {
+    color: $textColor;
+    text-decoration: none;
+    padding: 14px 16px;
+    font-size: larger;
+  }
 
-.nav ul li {
-  padding: 10px;
-}
+  ul li {
+    padding: 10px;
+  }
 
-nav li:hover {
-  @include hover;
+  li:hover {
+    @include hover;
+  }
 }
 
 .container {
@@ -71,12 +75,14 @@ nav li:hover {
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
+  flex: 1 auto;
 }
 
 #box1 {
   @include boxes;
   background-color: $mainColor;
   color: $textColor;
+  max-width: 100%;
 }
 
 #box1 p {
@@ -84,7 +90,11 @@ nav li:hover {
   font-size: large;
 }
 
-#box2 {
+#box2 img {
   @include boxes($circle: true);
   @extend #box1;
+}
+
+footer {
+  background-color: $footerColor;
 }
