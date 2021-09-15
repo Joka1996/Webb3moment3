@@ -1,24 +1,40 @@
 // Variabler
 // färger
-$mainColor: rgba(151, 20, 20, 0.849);
-$textColor: rgb(255, 255, 255);
-$bgColor: #115266;
-$hoverColor: darken($textColor, 60%);
-$footerColor: lighten($mainColor, 8%);
+$mainColor: #1e4dc2f3;
+$textColor: #d6f2ff;
+$lines: lighten($mainColor, 20%);
+$boxColor: darken($mainColor, 20%);
+$hoverColor: lighten($mainColor, 40%);
+$footerColor: #5e2ad6a8;
 
 // mixins
-@mixin boxes($circle: false) {
+@mixin boxes() {
   height: 400px;
   width: 600px;
+  max-width: 100%;
+  color: $textColor;
+}
 
+@mixin circle($circle: false) {
   @if $circle {
-    border-radius: 50%;
+    border-radius: 40%;
   } @else {
-    border-radius: 10px;
+    border-radius: 20px;
   }
 }
 
 @mixin hover {
-  color: rgb(228, 226, 226);
-  background-color: $hoverColor;
+  -webkit-transform: scale(1.2);
+  // border: 2px solid $hoverColor;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
+    0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;
+}
+
+@mixin listStyle {
+  padding: 20px;
+  border-radius: 10%;
+  background-color: $footerColor;
+  box-shadow: 0 0 0.2rem rgb(199, 199, 199), 0 0 0.2rem rgb(199, 199, 199),
+    0 0 2rem #bc13fe, 0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe,
+    inset 0 0 1.3rem #bc13fe;
 }

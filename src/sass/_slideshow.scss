@@ -1,28 +1,25 @@
 @import "basic";
 
 .slideshowContainer {
-  background-color: $mainColor;
-  @include boxes;
+  margin-top: 2%;
+  p {
+    color: $textColor;
+    text-align: center;
+  }
 }
 
 .slide {
   display: none;
+  img {
+    height: 400px;
+    width: 600px;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
 }
 
-.slide img {
-  height: 300px;
-  width: 500px;
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
-}
-
-.slideshowContainer p {
-  color: $textColor;
-  text-align: center;
-}
-
-.fade {
+.slide .slideshowContainer .fade {
   -webkit-animation-name: fade;
   -webkit-animation-duration: 2s;
   animation-name: fade;

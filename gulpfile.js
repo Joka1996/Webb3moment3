@@ -19,6 +19,7 @@ const files = {
   sassPath: "src/**/*.scss",
   jsPath: "src/**/*.js",
   picPath: "src/pics/*",
+  vidPath: "src/video/*",
 };
 
 // htmlTask
@@ -72,6 +73,16 @@ function picTask() {
   );
 }
 
+// vidTask
+function vidTask() {
+  return (
+    // Hämta filerna
+    src(files.vidPath)
+      // skicka till pub
+      .pipe(dest("pub/video"))
+  );
+}
+
 // en watchtask för att automatisera metoderna.
 function watchTask() {
   // browsersync, ändra från app till pub
@@ -82,14 +93,20 @@ function watchTask() {
   // metoden watch som tar en array och ett argument.
   // Ladda om webbläsaren vid förändring, browsersync
   watch(
-    [files.htmlPath, files.sassPath, files.jsPath, files.picPath],
-    parallel(htmlTask, sassTask, jsTask, picTask)
+    [
+      files.htmlPath,
+      files.sassPath,
+      files.jsPath,
+      files.picPath,
+      files.vidPath,
+    ],
+    parallel(htmlTask, sassTask, jsTask, picTask, vidTask)
   ).on("change", browserSync.reload);
 }
 
 // Dags att exportera, först körs alla task parallelt,
 //  sedan watchTask med browserSync.
 exports.default = series(
-  parallel(htmlTask, sassTask, jsTask, picTask),
+  parallel(htmlTask, sassTask, jsTask, picTask, vidTask),
   watchTask
 );

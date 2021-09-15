@@ -1,68 +1,58 @@
-// $blue: rgb(216, 80, 46);
-// $lightblue: lighten($blue, 30%);
-// header {
-//   background-color: $lightblue;
-// }
-// @mixin boxes($circle: false) {
-//   height: 100px;
-//   width: 100px;
-
-//   @if $circle {
-//     border-radius: 50%;
-//   } @else {
-//     border-radius: 10px;
-//   }
-// }
-
-// #box1 {
-//   @include boxes;
-//   background-color: $blue;
-// }
-
-// #box2 {
-//   @include boxes($circle: true);
-//   background-color: $blue;
-// }
-
-// #box3 {
-//   @extend #box1;
-// }
-
 // importera de andra filerna.
 @import "slideshow";
 @import "basic";
+@import "background";
+
 body {
-  background-color: $bgColor;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-h1 {
-  text-align: center;
-  color: $textColor;
+.container {
+  margin: auto;
+  width: 100%;
+  background-color: $boxColor;
+  border-radius: 2%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 43px;
 }
 
+h1 {
+  text-align: center;
+  color: #fff;
+  font-size: 50px;
+  padding: 0.4em;
+  text-shadow: 0 0 7px rgb(151, 151, 151), 0 0 10px rgb(151, 151, 151),
+    0 0 21px rgb(151, 151, 151), 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa,
+    0 0 102px #0fa, 0 0 151px #0fa;
+}
+// Nestning
 nav {
-  background-color: $mainColor;
-
   ul {
     display: flex;
     flex-direction: row;
     list-style: none;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     font-size: larger;
+    gap: 50px;
   }
   a {
     color: $textColor;
     text-decoration: none;
     padding: 14px 16px;
     font-size: larger;
+    text-shadow: 0 0 7px rgb(172, 172, 172), 0 0 10px rgb(141, 141, 141),
+      0 0 21px rgb(144, 144, 144), 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa,
+      0 0 102px #0fa, 0 0 151px #0fa;
   }
 
   ul li {
-    padding: 10px;
+    @include listStyle;
   }
 
   li:hover {
@@ -70,31 +60,39 @@ nav {
   }
 }
 
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  flex: 1 auto;
-}
-
+// inkludera mixin boxes
 #box1 {
   @include boxes;
-  background-color: $mainColor;
-  color: $textColor;
-  max-width: 100%;
+  h2 {
+    color: $textColor;
+  }
+  p {
+    font-size: larger;
+  }
 }
 
-#box1 p {
-  padding: 5%;
-  font-size: large;
-}
-
-#box2 img {
-  @include boxes($circle: true);
+// extend färdig css från box1 till box2
+#box2 {
   @extend #box1;
+  img {
+    @include circle($circle: true);
+    height: 200px;
+    width: 300px;
+    float: left;
+  }
+  p {
+    float: right;
+  }
 }
 
 footer {
-  background-color: $footerColor;
+  li {
+    @include listStyle;
+    list-style: none;
+    text-align: center;
+    color: $textColor;
+    font-size: larger;
+    max-width: 60%;
+    margin: 0 auto;
+  }
 }
