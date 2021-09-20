@@ -1,9 +1,8 @@
-#grundstruktur.
+#Webb3 Moment 3.
 
 #INSTALL
-Det här är repo med en grundstruktur.
 
 1. npm init,
 2. npm i gulp --save-dev
-   ##Om
-   Av Joel Karlsson 2021
+
+#Om Av Joel Karlsson 2021
