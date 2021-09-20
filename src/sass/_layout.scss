@@ -93,3 +93,10 @@ footer {
     margin: 0 auto;
   }
 }
+
+// media queris
+@media screen and (max-width: 650px) {
+  #box2 {
+    margin-top: 10%;
+  }
+}
