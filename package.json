@@ -1,14 +1,18 @@
 {
   "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
     "browser-sync": "^2.27.5",
     "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-imagemin": "^7.1.0",
     "gulp-sass": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-terser": "^2.0.1",
     "node-sass": "^6.0.1",
-    "sass": "^1.39.2"
+    "sass": "^1.39.2",
+    "typescript": "^4.4.3"
   },
   "name": "moment3",
   "description": "Det här är repo med en grundstruktur.",
@@ -115,7 +119,7 @@
     "global-prefix": "^1.0.2",
     "glogg": "^1.0.2",
     "graceful-fs": "^4.2.8",
-    "gulp-cli": "^2.3.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "gulplog": "^1.0.0",
     "has": "^1.0.3",
     "has-symbols": "^1.0.2",

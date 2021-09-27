@@ -12,11 +12,17 @@ const browserSync = require("browser-sync").create();
 const sourcemaps = require("gulp-sourcemaps");
 //npm install sass gulp-sass --save-dev
 const sass = require("gulp-sass")(require("sass"));
+// npm install --save-dev gulp-babel @babel/core
+const babel = require("gulp-babel");
+// npm install typescript --save-dev
+const ts = require("gulp-typescript");
+const tsProject = ts.createProject("tsconfig.json");
 
 // objekt för att lagra sökvägar
 const files = {
   htmlPath: "src/**/*.html",
   sassPath: "src/**/*.scss",
+  tsPath: "src/typescript/*.ts",
   jsPath: "src/**/*.js",
   picPath: "src/pics/*",
   vidPath: "src/video/*",
@@ -53,8 +59,22 @@ function jsTask() {
       .pipe(sourcemaps.init())
       // slå ihop
       .pipe(concat("main.js"))
+      .pipe(babel({ presets: ["@babel/env"] }))
       // minimera filer
       .pipe(terser())
+      // sourcemaps
+      .pipe(sourcemaps.write("./maps"))
+      // skicka till pub
+      .pipe(dest("pub/js"))
+  );
+}
+
+function typescriptTask() {
+  return (
+    src(files.tsPath)
+      // sourcemap
+      .pipe(sourcemaps.init())
+      .pipe(tsProject())
       // sourcemaps
       .pipe(sourcemaps.write("./maps"))
       // skicka till pub
@@ -97,16 +117,17 @@ function watchTask() {
       files.htmlPath,
       files.sassPath,
       files.jsPath,
+      files.tsPath,
       files.picPath,
       files.vidPath,
     ],
-    parallel(htmlTask, sassTask, jsTask, picTask, vidTask)
+    parallel(htmlTask, sassTask, jsTask, typescriptTask, picTask, vidTask)
   ).on("change", browserSync.reload);
 }
 
 // Dags att exportera, först körs alla task parallelt,
 //  sedan watchTask med browserSync.
 exports.default = series(
-  parallel(htmlTask, sassTask, jsTask, picTask, vidTask),
+  parallel(htmlTask, sassTask, jsTask, typescriptTask, picTask, vidTask),
   watchTask
 );
