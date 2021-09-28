@@ -19,7 +19,7 @@ class Car {
   }
 
   public getCar() {
-    return this.brand + this.model + " Hästkrafter != " + this.horsePower;
+    return this.brand + this.model + " Hästkrafter = " + this.horsePower;
   }
 }
 
