@@ -1,7 +1,8 @@
 {
-  "include": ["src/typscript/*.ts"],
+  "include": ["src/typescript/*.ts"],
   "compilerOptions": {
     "noImplicitAny": true,
-    "target": "es5"
+    "target": "es5",
+    "sourceMap": true
   }
 }

@@ -35,18 +35,19 @@ function htmlTask() {
     src(files.htmlPath)
       // skicka till pub
       .pipe(dest("pub"))
+      .pipe(browserSync.stream())
   );
 }
 
 // sassTask
 function sassTask() {
   return (
-    src(files.sassPath)
-      .pipe(sourcemaps.init())
+    src(files.sassPath, { sourcemaps: true })
+      // .pipe(sourcemaps.init())
       .pipe(sass().on("error", sass.logError))
       // sourcemaps
-      .pipe(sourcemaps.write("./maps"))
-      .pipe(dest("pub/css"))
+      // .pipe(sourcemaps.write("./maps"))
+      .pipe(dest("pub/css", { sourcemaps: true }))
       .pipe(browserSync.stream())
   );
 }
@@ -54,29 +55,30 @@ function sassTask() {
 // jsTask
 function jsTask() {
   return (
-    src(files.jsPath)
-      // sourcemap
-      .pipe(sourcemaps.init())
+    src(files.jsPath, { sourcemaps: true })
+      // // sourcemap
+      // .pipe(sourcemaps.init())
+      .pipe(babel({ presets: ["@babel/env"] }))
       // slå ihop
       .pipe(concat("main.js"))
-      .pipe(babel({ presets: ["@babel/env"] }))
+
       // minimera filer
       .pipe(terser())
       // sourcemaps
-      .pipe(sourcemaps.write("./maps"))
+      // .pipe(sourcemaps.write("./maps"))
       // skicka till pub
-      .pipe(dest("pub/js"))
+      .pipe(dest("pub/js", { sourcemaps: " . " }))
   );
 }
 
 function typescriptTask() {
   return (
-    src(files.tsPath)
+    src(files.tsPath, { sourcemaps: true })
       // sourcemap
-      .pipe(sourcemaps.init())
+      // .pipe(sourcemaps.init())
       .pipe(tsProject())
       // sourcemaps
-      .pipe(sourcemaps.write("./maps"))
+      // .pipe(sourcemaps.write("./maps"))
       // skicka till pub
       .pipe(dest("pub/js"))
   );
