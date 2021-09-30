@@ -35,7 +35,7 @@ function htmlTask() {
     src(files.htmlPath)
       // skicka till pub
       .pipe(dest("pub"))
-      .pipe(browserSync.stream())
+    // .pipe(browserSync.stream())
   );
 }
 
