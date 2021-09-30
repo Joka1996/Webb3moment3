@@ -42,12 +42,12 @@ function htmlTask() {
 // sassTask
 function sassTask() {
   return (
-    src(files.sassPath, { sourcemaps: true })
-      // .pipe(sourcemaps.init())
+    src(files.sassPath)
+      .pipe(sourcemaps.init())
       .pipe(sass().on("error", sass.logError))
       // sourcemaps
-      // .pipe(sourcemaps.write("./maps"))
-      .pipe(dest("pub/css", { sourcemaps: true }))
+      .pipe(sourcemaps.write("./maps"))
+      .pipe(dest("pub/css"))
       .pipe(browserSync.stream())
   );
 }
@@ -70,13 +70,15 @@ function jsTask() {
       .pipe(dest("pub/js", { sourcemaps: " . " }))
   );
 }
-
+// typescript task
 function typescriptTask() {
   return (
     src(files.tsPath, { sourcemaps: true })
       // sourcemap
       // .pipe(sourcemaps.init())
       .pipe(tsProject())
+      // minimera filer
+      .pipe(terser())
       // sourcemaps
       // .pipe(sourcemaps.write("./maps"))
       // skicka till pub
